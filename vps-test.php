@@ -2,7 +2,7 @@
 require __DIR__ . '/vendor/autoload.php';
 use Ovh\Api;
 
-require __DIR__ . '/parameters.local.php'
+require __DIR__ . '/parameters.local.php';
 
 $conn = new Api($applicationKey,
     $applicationSecret,
@@ -22,4 +22,6 @@ foreach ($allVps as $vps) {
     }
 }
 
-file_put_contents('servers.json', json_encode($servers));
+$output = __DIR__ . '/var/servers.json';
+
+file_put_contents($output, json_encode($servers));
