@@ -2,7 +2,7 @@
 require __DIR__ . '/vendor/autoload.php';
 use Ovh\Api;
 
-require __DIR__ . '/parameters.local.php'
+require __DIR__ . '/parameters.local.php';
 
 $redirection = "http://google.com";
 

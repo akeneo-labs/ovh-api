@@ -1,5 +1,8 @@
 <?php
+
 require __DIR__ . '/vendor/autoload.php';
+
+use Jmleroux\VpsTools\Vps;
 use Ovh\Api;
 
 require __DIR__ . '/parameters.local.php';
@@ -7,17 +10,15 @@ require __DIR__ . '/parameters.local.php';
 $conn = new Api($applicationKey,
     $applicationSecret,
     $endpoint,
-    $consumer_key);
+    $consumer_key
+);
 
-$allVps = $conn->get('/vps');
+$serverList = $conn->get('/vps');
 
 $servers = [];
-foreach ($allVps as $vps) {
-    $query = sprintf('/vps/%s', $vps);
-    $infos = $conn->get($query);
-    $query = sprintf('/vps/%s/serviceInfos', $vps);
-    $infos = array_merge($infos, $conn->get($query));
-    $servers[$vps] = $infos;
+foreach ($serverList as $service) {
+    $vps = new Vps($conn, $service);
+    $servers[$vps->getService()] = $vps->getInfos();
 }
 
 $output = __DIR__ . '/var/vps-infos.json';

@@ -12,6 +12,11 @@
     "require": {
         "ovh/ovh": "dev-master"
     },
+    "autoload": {
+        "psr-4": {
+            "Jmleroux\\VpsTools\\": "src/"
+        }
+    },
     "repositories": [
         {
             "type": "vcs",
