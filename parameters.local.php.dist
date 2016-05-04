@@ -1,0 +1,5 @@
+<?php
+$applicationKey = "lcqmldmo8lTgHuEW";
+$applicationSecret = "F1esdfsfdRnlvonODlxJat0Zj6eUEAWA";
+$endpoint = 'ovh-eu';
+$consumer_key = '3foobar2dmj1bcpLbU';

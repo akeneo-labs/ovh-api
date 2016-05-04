@@ -1,0 +1,21 @@
+{
+    "name": "jmleroux/ovh-api",
+    "description": "description_text",
+    "minimum-stability": "stable",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "JM Leroux",
+            "email": "jean-marie.leroux@akeneo.com"
+        }
+    ],
+    "require": {
+        "ovh/ovh": "dev-master"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:jmleroux/php-ovh.git"
+        }
+    ]
+}
