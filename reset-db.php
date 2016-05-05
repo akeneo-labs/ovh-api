@@ -18,7 +18,7 @@ $serverList = $conn->get('/vps');
 $servers = [];
 foreach ($serverList as $service) {
     $vps = new Vps($conn, $service);
-    $servers[$vps->getService()] = $vps->getInfos();
+    $servers[$vps->getService()] = $vps->fetchInfos();
 }
 
 $output = __DIR__ . '/var/vps-infos.json';

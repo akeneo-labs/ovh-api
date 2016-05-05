@@ -2,6 +2,7 @@
 
 namespace Jmleroux\VpsTools;
 
+use GuzzleHttp\Exception\ClientException;
 use Ovh\Api;
 
 class Vps
@@ -12,8 +13,6 @@ class Vps
     private $service;
     /** @var int */
     private $disk;
-    /** @var string */
-    private $status;
 
     public function __construct(Api $connection, $name)
     {
@@ -44,22 +43,16 @@ class Vps
     {
         $this->disk = $disk;
     }
-
-    /**
-     * @return string
-     */
-    public function getStatus()
-    {
-        return $this->status;
-    }
-
-    public function getInfos()
+    public function fetchInfos()
     {
         $query = sprintf('/vps/%s', $this->service);
         $infos = $this->connection->get($query);
         $query = sprintf('/vps/%s/serviceInfos', $this->service);
         $infos = array_merge($infos, $this->connection->get($query));
 
+        $this->fetchDisk();
+        $infos->disk = $this->getDisk();
+        
         return $infos;
     }
 
@@ -69,7 +62,7 @@ class Vps
         try {
             $disks = $this->connection->get($query);
             $this->disk = $disks[0];
-        } catch (GuzzleHttp\Exception\ClientException $e) {
+        } catch (ClientException $e) {
         }
     }
 }

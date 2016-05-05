@@ -4,7 +4,7 @@ use Ovh\Api;
 
 require __DIR__ . '/parameters.local.php';
 
-$redirection = "http://google.com";
+$redirection = "http://localhost";
 
 // Information about API and rights asked
 $endpoint = 'ovh-eu';
